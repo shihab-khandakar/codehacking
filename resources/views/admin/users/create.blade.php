@@ -32,7 +32,7 @@
             {!! Form::password('password',['class'=>'form-control','placeholder'=>'Enter Password']) !!}
             </div>
             <div class="form-group"> 
-            {!! Form::file('file') !!}
+            {!! Form::file('photo_id') !!}
             </div>
             <div>
             {!! Form::submit('Create',['class'=>'btn btn-primary']) !!}
