@@ -5,6 +5,12 @@
 
 <h1>Users</h1>
 
+@if(Session::has('updated_user'))
+
+<p class="bg-success">{{session('updated_user')}}</p>
+
+@endif
+
 <table class="table">
     <thead>
       <tr>
@@ -30,7 +36,17 @@
         <td>{{$user->is_active == 1 ? "active" : "not active"}}</td>
         <td>{{$user->created_at->diffForHumans()}}</td>
         <td>{{$user->updated_at->diffForHumans()}}</td>
-        <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
+        <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+        
+          <form action="{{route('users.destroy',$user->id)}}" method="post" onsubmit="return confirm('Are You Sure???')">
+          @csrf
+          @method('delete')
+
+          <button type="submit" class="btn btn-danger">Delete</button>
+          
+          </form>
+
+        </td>
       </tr>
       @endforeach
     </tbody>
